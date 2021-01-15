@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .keyword-page {
+      line-height: 26px;
+      color: #999;
+      width: 100%;
+      font-size: 12px;
+      margin-top: 300px;
+      font-style: normal;
+    }
+
+    .keyword-page .keyword-page-main {
+      float: right;
+      height: 26px;
+      margin-right: 10px;
+      margin-top: 3px;
+    }
+
+    .keyword-page .keyword-page-main li {
+      list-style: none;
+    }
+
+    .keyword-page li {
+      float: left;
+      position: relative;
+    }
+
+    .keyword-page .total {
+      margin-right: 20px;
+    }
+
+    .keyword-page .current {
+      padding: 0 26px;
+      margin-right: 10px;
+    }
+
+    .keyword-page .current a {
+      position: absolute;
+      padding: 0;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      border: 1px solid #ddd;
+      display: block;
+      background-color: #f4f5f9;
+      background-repeat: no-repeat;
+    }
+
+    .keyword-page .keyword-page-prev.default {
+      border-color: #e7e7eb;
+      background-position: -43px -123px;
+      cursor: default;
+    }
+
+    .keyword-page .keyword-page-prev {
+      left: 0;
+      border-radius: 2px 0 0 2px;
+      background-image: url(../assets/icon-label-arrow.png);
+      background-position: 7px -123px;
+    }
+
+    .keyword-page .current-page {
+      background: #fff;
+      height: 24px;
+      line-height: 24px;
+      text-align: center;
+      padding: 0 3px;
+    }
+
+    .keyword-page .keyword-page-next.default {
+      border-color: #e7e7eb;
+      background-position: -43px -3px;
+      cursor: default;
+    }
+
+    .keyword-page .keyword-page-next {
+      right: 0;
+      border-radius: 0 2px 2px 0;
+      background-image: url(../assets/icon-label-arrow.png);
+      background-position: 7px -3px;
+    }
+
+  </style>
+</head>
+<body>
+<div class="keyword-page">
+  <ul class="page-main">
+    <li class="total" id="count">共条</li>
+    <li class="current">
+      <a class="page-prev default" id="prev" href="javascript:;" onclick="pagePrev()"></a>
+      <div class="current-page" id="current">第页</div>
+      <a class="page-next" id="next" href="javascript:;" onclick="pageNext()"></a>
+    </li>
+  </ul>
+</div>
+<script type="text/javascript">
+let count = 51;
+let current = 1;
+let pageSize = 10;
+let total =  Math.ceil(count / pageSize)
+window.onload = function () {
+  let countDom = document.getElementById("count");
+  countDom.innerHTML = "共" + count + "条"; //设置
+  let currentDom = document.getElementById("current");
+  currentDom.innerHTML = "第" + current + "/" + total + "页"; //设置
+};
+function pagePrev() {
+  if (current > 1) {
+    current = current - 1
+  } else {
+    current = 1
+  }
+  let currentDom = document.getElementById("current");
+  currentDom.innerHTML = "第" + current + "/" + total + "页"; //设置
+}
+function pageNext() {
+  if (current < total) {
+    current = current + 1
+  } else {
+    current = total
+  }
+  let currentDom = document.getElementById("current");
+  currentDom.innerHTML = "第" + current + "/" + total + "页";
+}
+</script>
+</body>
+</html>
