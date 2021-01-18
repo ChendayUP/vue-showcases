@@ -20,7 +20,6 @@ export default {
         return value.meta.description != null
       })
     }
-
   }
 }
 </script>
