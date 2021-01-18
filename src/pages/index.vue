@@ -2,20 +2,25 @@
   <div class="hello">
     <div style="text-align: center;font-size: 20px;margin:30px">Vue代码示例</div>
     <CellGroup>
-      <Cell title="Bind" label="defineProperty示例" to="/bind" />
-      <Cell title="Page-next" label="翻页控件示例" to="/page-next" />
-      <Cell title="Page-next-simple" label="简单化的翻页控件示例" to="/page-next-simple" />
-      <Cell title="Read-City" label="世界国家地址信息处理,转换" to="/read-city" />
-      <Cell title="V-Model" label="v-model使用示例" to="/v-model" />
+      <Cell v-for="item in routerMap" :title="item.path" :label="item.meta.description" :to="item.path"/>
     </CellGroup>
   </div>
 </template>
 
 <script>
+import router from "../router"
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      routerMap: router.filter(value => {
+        return value.meta.description != null
+      })
+    }
+
   }
 }
 </script>
